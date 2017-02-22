@@ -117,5 +117,6 @@ public partial class MainWindow
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.drawingarea.ExposeEvent += new global::Gtk.ExposeEventHandler (this.OnDrawingAreaExposed);
+		this.drawingarea.ScreenChanged += new global::Gtk.ScreenChangedHandler (this.OnDrawingareaScreenChanged);
 	}
 }

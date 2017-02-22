@@ -47,7 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mono.Posix" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="Mono.Cairo" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +65,9 @@
     <Compile Include="ANN\Neuron.cs" />
     <Compile Include="ANN\NeuronNetwork.cs" />
     <Compile Include="ANN\Connection.cs" />
+    <Compile Include="NetworkDrawer.cs" />
+    <Compile Include="ANN\NeuronsLayer.cs" />
+    <Compile Include="Vector2.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ANN\" />

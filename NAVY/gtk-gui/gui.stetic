@@ -111,6 +111,7 @@
           <widget class="Gtk.DrawingArea" id="drawingarea">
             <property name="MemberName" />
             <signal name="ExposeEvent" handler="OnDrawingAreaExposed" />
+            <signal name="ScreenChanged" handler="OnDrawingareaScreenChanged" />
           </widget>
           <packing>
             <property name="Position">1</property>
