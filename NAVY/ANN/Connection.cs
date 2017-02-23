@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Xml;
+
 namespace ANN
 {
-    public class Connection
+    public class Connection : SaveableObject
     {
         public Neuron From { get; private set; }
         public Neuron To { get; private set; }
@@ -12,6 +14,17 @@ namespace ANN
             From = from;
             To = to;
             Weight = weight;
+        }
+
+
+
+        public override void Save (XmlWriter writer)
+        {
+            writer.WriteStartElement ("Connection");
+            writer.WriteAttributeString ("from", From.ID.ToString ());
+            writer.WriteAttributeString ("to", To.ID.ToString ());
+            writer.WriteAttributeString ("weight", Weight.ToString ());
+            writer.WriteEndElement ();
         }
     }
 }

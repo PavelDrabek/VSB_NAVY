@@ -19,6 +19,12 @@ public partial class MainWindow
 
 	private global::Gtk.Entry entry4;
 
+	private global::Gtk.HButtonBox hbuttonbox2;
+
+	private global::Gtk.Button btnLoad;
+
+	private global::Gtk.Button btnSave;
+
 	private global::Gtk.DrawingArea drawingarea;
 
 	protected virtual void Build ()
@@ -35,7 +41,6 @@ public partial class MainWindow
 		this.hbox1.Spacing = 6;
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.vbox1 = new global::Gtk.VBox ();
-		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.layersNum = new global::Gtk.Label ();
@@ -97,17 +102,46 @@ public partial class MainWindow
 		w6.Position = 5;
 		w6.Expand = false;
 		w6.Fill = false;
-		this.hbox1.Add (this.vbox1);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
-		w7.Position = 0;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.hbuttonbox2 = new global::Gtk.HButtonBox ();
+		this.hbuttonbox2.Name = "hbuttonbox2";
+		// Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+		this.btnLoad = new global::Gtk.Button ();
+		this.btnLoad.CanFocus = true;
+		this.btnLoad.Name = "btnLoad";
+		this.btnLoad.UseUnderline = true;
+		this.btnLoad.Label = global::Mono.Unix.Catalog.GetString ("Load");
+		this.hbuttonbox2.Add (this.btnLoad);
+		global::Gtk.ButtonBox.ButtonBoxChild w7 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2 [this.btnLoad]));
 		w7.Expand = false;
 		w7.Fill = false;
+		// Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+		this.btnSave = new global::Gtk.Button ();
+		this.btnSave.CanFocus = true;
+		this.btnSave.Name = "btnSave";
+		this.btnSave.UseUnderline = true;
+		this.btnSave.Label = global::Mono.Unix.Catalog.GetString ("Save");
+		this.hbuttonbox2.Add (this.btnSave);
+		global::Gtk.ButtonBox.ButtonBoxChild w8 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2 [this.btnSave]));
+		w8.Position = 1;
+		w8.Expand = false;
+		w8.Fill = false;
+		this.vbox1.Add (this.hbuttonbox2);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbuttonbox2]));
+		w9.Position = 6;
+		w9.Expand = false;
+		w9.Fill = false;
+		this.hbox1.Add (this.vbox1);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox1]));
+		w10.Position = 0;
+		w10.Expand = false;
+		w10.Fill = false;
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.drawingarea = new global::Gtk.DrawingArea ();
 		this.drawingarea.Name = "drawingarea";
 		this.hbox1.Add (this.drawingarea);
-		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.drawingarea]));
-		w8.Position = 1;
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.drawingarea]));
+		w11.Position = 1;
 		this.Add (this.hbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -116,6 +150,8 @@ public partial class MainWindow
 		this.DefaultHeight = 300;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.btnLoad.Clicked += new global::System.EventHandler (this.OnBtnLoadClicked);
+		this.btnSave.Clicked += new global::System.EventHandler (this.OnBtnSaveClicked);
 		this.drawingarea.ExposeEvent += new global::Gtk.ExposeEventHandler (this.OnDrawingAreaExposed);
 		this.drawingarea.ScreenChanged += new global::Gtk.ScreenChangedHandler (this.OnDrawingareaScreenChanged);
 	}

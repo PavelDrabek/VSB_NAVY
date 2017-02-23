@@ -54,6 +54,8 @@ namespace NAVY
 
 
             using (Context g = Gdk.CairoHelper.Create (drawable)) {
+                g.SetSourceColor (new Color (1, 1, 1));
+                g.Paint ();
 
                 foreach (var connection in network.Connections) {
                     DrawArrow (g, neuronPoints[connection.From.ID], neuronPoints [connection.To.ID]);

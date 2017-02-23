@@ -48,6 +48,8 @@
     </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="Mono.Cairo" />
+    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -67,6 +69,7 @@
     <Compile Include="NetworkDrawer.cs" />
     <Compile Include="ANN\NeuronsLayer.cs" />
     <Compile Include="Vector2.cs" />
+    <Compile Include="ANN\SaveableObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ANN\" />

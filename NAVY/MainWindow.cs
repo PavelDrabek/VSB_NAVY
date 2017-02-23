@@ -1,4 +1,5 @@
-﻿using Cairo;
+﻿using System;
+using System.Xml;
 using Gtk;
 
 public partial class MainWindow : Gtk.Window
@@ -11,8 +12,10 @@ public partial class MainWindow : Gtk.Window
 	{
 		Build ();
         network = new ANN.NeuronNetwork ();
+        network.OnNeuralNetworkChanged += OnNeuronNetworkChanged;
         networkDrawer = new NAVY.NetworkDrawer (network, drawingarea.GdkWindow);
         network.Generate (2, 2, 3);
+        RefreshDrawing ();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -23,17 +26,37 @@ public partial class MainWindow : Gtk.Window
 
     protected void OnDrawingAreaExposed (object o, ExposeEventArgs args)
     {
-        DrawingArea area = (DrawingArea)o;
-        RefreshDrawing (area.GdkWindow);
+        RefreshDrawing ();
     }
 
-    protected void RefreshDrawing (Gdk.Drawable drawable)
+    protected void RefreshDrawing ()
     {
         networkDrawer.Draw ();
     }
 
     protected void OnDrawingareaScreenChanged (object o, ScreenChangedArgs args)
     {
-        networkDrawer.Draw ();
+        RefreshDrawing ();
+    }
+
+    protected void OnNeuronNetworkChanged (object sender, System.EventArgs e)
+    {
+        RefreshDrawing ();
+    }
+
+    protected void OnBtnSaveClicked (object sender, System.EventArgs e)
+    {
+        using (var writer = XmlWriter.Create ("test.xml")) {
+            network.Save (writer);
+        }
+    }
+
+    protected void OnBtnLoadClicked (object sender, System.EventArgs e)
+    {
+        XmlDocument doc = new XmlDocument ();
+        doc.Load ("test.xml");
+
+        XmlNode node = doc.DocumentElement.SelectSingleNode ("/NeuronNetwork");
+        network.Load(node);
     }
 }
