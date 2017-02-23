@@ -10,11 +10,11 @@ namespace ANN
             
         }
 
-        public double evaluate (List<Input> inputs)
+        public double evaluate (List<Connection> connections)
         {
             double result = 0;
-            for (int i = 0; i < inputs.Count; i++) {
-                result += inputs [i].value * inputs [i].weight;
+            for (int i = 0; i < connections.Count; i++) {
+                result += /*value[i] * */ connections [i].Weight;
             }
             return result;
         }

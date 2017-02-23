@@ -61,7 +61,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ANN\Perceptron.cs" />
-    <Compile Include="ANN\Input.cs" />
     <Compile Include="ANN\Neuron.cs" />
     <Compile Include="ANN\NeuronNetwork.cs" />
     <Compile Include="ANN\Connection.cs" />

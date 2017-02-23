@@ -39,53 +39,32 @@ namespace NAVY
             drawable.GetSize (out width, out height);
             center = new Vector2 (width / 2, height / 2);
 
-            List<List<Vector2>> points = new List<List<Vector2>> ();
+            //List<List<Vector2>> points = new List<List<Vector2>> ();
+            Dictionary<int, Vector2> neuronPoints = new Dictionary<int, Vector2> ();
             for (int l = 0; l < network.Layers.Count; l++) {
-                List<Vector2> layerPoints = new List<Vector2> ();
+                //List<Vector2> layerPoints = new List<Vector2> ();
                 NeuronsLayer layer = network.Layers [l];
                 for (int n = 0; n < layer.Neurons.Count; n++) {
                     Vector2 nPos = CalcNeuronPosition (l, network.Layers.Count, n, layer.Neurons.Count);
-                    layerPoints.Add (nPos);
+                    //layerPoints.Add (nPos);
+                    neuronPoints [layer.Neurons [n].ID] = nPos;
                 }
-                points.Add (layerPoints);
+                //points.Add (layerPoints);
             }
 
 
             using (Context g = Gdk.CairoHelper.Create (drawable)) {
-                Color neuronColor = inputColor;
-                for (int l = 0; l < points.Count; l++) {
-                    for (int n = 0; n < points[l].Count; n++) {
-                        Vector2 nPos = points[l][n];
-                        if (l > 0) {
-                            for (int n2 = 0; n2 < points [l-1].Count; n2++) {
-                                DrawArrow (g, points [l - 1] [n2], nPos);
-                            }
-                        }
-                        DrawCircle (g, nPos, neuronColor);
-                    }
-                    neuronColor = l + 2 < points.Count ? insideColor : outputColor;
+
+                foreach (var connection in network.Connections) {
+                    DrawArrow (g, neuronPoints[connection.From.ID], neuronPoints [connection.To.ID]);
                 }
-
-                //PointD p1, p2, p3, p4;
-                //p1 = new PointD (0, 0);
-                //p2 = new PointD (width, 0);
-                //p3 = new PointD (width, height);
-                //p4 = new PointD (0, height);
-
-                ////g.Arc (150, 50, 30, 0, 2 * System.Math.PI);
-                //////g.FillPreserve ();
-
-                //g.MoveTo (p1);
-                //g.LineTo (p2);
-                //g.LineTo (p3);
-                //g.LineTo (p4);
-                //g.LineTo (p1);
-                //g.ClosePath ();
-
-                ////g.SetSourceColor (new Color (0, 1, 0));
-                //////g.FillPreserve ();
-                //g.SetSourceColor (new Color (1, 0, 0));
-                //g.Stroke ();
+                Color neuronColor = inputColor;
+                for (int i = 0; i < network.Layers.Count; i++) {
+                    foreach (var neuron in network.Layers [i].Neurons) {
+                        DrawCircle (g, neuronPoints [neuron.ID], neuronColor);
+                    }
+                    neuronColor = i + 2 < network.Layers.Count ? insideColor : outputColor;
+                }
 
                 g.GetTarget ().Dispose ();
                 g.Dispose ();

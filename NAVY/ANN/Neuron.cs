@@ -5,11 +5,12 @@ namespace ANN
 {
     public class Neuron
     {
-        private List<Connection> Connections { get; set; }
+        public List<Connection> Connections { get; set; }
+        public int ID { get; private set; }
 
-        public Neuron ()
+        public Neuron (int id)
         {
-            
+            ID = id;
         }
 
     }
