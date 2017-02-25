@@ -21,8 +21,55 @@ namespace ANN
             Layers = new List<NeuronsLayer> ();
         }
 
+        public void SetInputs (int [] inputs)
+        {
+            Clean ();
+            
+            if (inputs.Length != Layers [0].Neurons.Count) {
+                throw new Exception ("Neuron network works with input size " + Layers[0].Neurons.Count + "!");
+            }
+
+            for (int i = 0; i < inputs.Length; i++) {
+                Layers [0].Neurons [i].SetValue(inputs [i]);
+            }
+            SendOnNetworkChanged ();
+        }
+
+        public void Evaluate ()
+        {
+            NeuronsLayer lastLayer = Layers [Layers.Count - 1];
+            for (int i = 0; i < lastLayer.Neurons.Count; i++) {
+                lastLayer.Neurons [i].Evaluate ();
+            }
+            SendOnNetworkChanged ();
+        }
+
+        public void Clean ()
+        {
+            for (int i = 0; i < Neurons.Count; i++) {
+                Neurons [i].Clear ();
+            }
+            SendOnNetworkChanged ();
+        }
+
+        public int [] GetOutput ()
+        {
+            NeuronsLayer lastLayer = Layers [Layers.Count - 1];
+            int [] output = new int [lastLayer.Neurons.Count];
+
+            for (int i = 0; i < lastLayer.Neurons.Count; i++) {
+                output[i] = lastLayer.Neurons [i].Value;
+            }
+
+            return output;
+        }
+
         public void Generate (int inputs, int layers, int numInLayers)
         {
+            Neurons = new List<Neuron> ();
+            Connections = new List<Connection> ();
+            Layers = new List<NeuronsLayer> ();
+
             int neuronId = 1;
             List<Neuron> neuronsInLayer = new List<Neuron> ();
             for (int i = 0; i < inputs; i++) {
@@ -61,6 +108,8 @@ namespace ANN
                 }
             }
 
+            SetConnectionsToNeurons ();
+
             SendOnNetworkChanged ();
         }
 
@@ -95,6 +144,8 @@ namespace ANN
                     }
                 }
             }
+
+            SetConnectionsToNeurons ();
 
             SendOnNetworkChanged ();
         }
@@ -136,6 +187,19 @@ namespace ANN
 
             writer.WriteEndElement ();
             
+        }
+
+        private void SetConnectionsToNeurons ()
+        {
+            for (int i = 0; i < Neurons.Count; i++) {
+                Neurons [i].InputConnections.Clear ();
+                Neurons [i].OutputConnections.Clear ();
+            }
+
+            for (int i = 0; i < Connections.Count; i++) {
+                Connections [i].From.OutputConnections.Add (Connections [i]);
+                Connections [i].To.InputConnections.Add (Connections [i]);
+            }
         }
 
         private Neuron GetNeuron (int id)

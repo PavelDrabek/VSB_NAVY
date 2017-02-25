@@ -5,23 +5,48 @@ using System.Xml.Serialization;
 
 namespace ANN
 {
-    public class Neuron : SaveableObject
+    public class Neuron
     {
-        public List<Connection> Connections { get; set; }
+        public List<Connection> InputConnections { get; set; }
+        public List<Connection> OutputConnections { get; set; }
 
-        [XmlAttribute (AttributeName = "id")]
         public int ID { get; private set; }
+        public int Value { get; private set; }
+        public bool IsEvaluated { get; private set; }
 
         public Neuron (int id)
         {
             ID = id;
+            InputConnections = new List<Connection> ();
+            OutputConnections = new List<Connection> ();
         }
 
-        public override void Save (XmlWriter writer)
+        public void SetValue (int value)
         {
-            writer.WriteStartElement ("Neuron");
-            writer.WriteAttributeString ("id", ID.ToString());
-            writer.WriteEndElement ();
+            Value = value;
+            IsEvaluated = true;
+        }
+
+
+        public void Evaluate ()
+        {
+            double result = 0;
+            for (int i = 0; i < InputConnections.Count; i++) {
+                if (!InputConnections [i].From.IsEvaluated) {
+                    InputConnections [i].From.Evaluate ();
+                }
+                result += InputConnections [i].From.Value * InputConnections [i].Weight;
+            }
+
+
+            Value = (int)result;
+            IsEvaluated = true;
+        }
+
+        public void Clear ()
+        {
+            Value = 0;
+            IsEvaluated = false;
         }
     }
 }
