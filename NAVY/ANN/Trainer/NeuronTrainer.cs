@@ -22,7 +22,7 @@ namespace ANN.Trainer
         {
             for (int i = 0; i < Epochs; i++) {
                 if (!TrainCycle ()) {
-                    return i;
+                    return i + 1;
                 }
             }
 

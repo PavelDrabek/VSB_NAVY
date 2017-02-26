@@ -186,7 +186,7 @@ namespace Windows
 			this.label9 = new global::Gtk.Label ();
 			this.label9.Name = "label9";
 			this.label9.Xalign = 1F;
-			this.label9.LabelProp = global::Mono.Unix.Catalog.GetString ("Epochs");
+			this.label9.LabelProp = global::Mono.Unix.Catalog.GetString ("Max epochs");
 			this.table3.Add (this.label9);
 			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table3 [this.label9]));
 			w11.TopAttach = ((uint)(2));

@@ -421,7 +421,7 @@ Output</property>
           <widget class="Gtk.Toolbar" id="toolbar1">
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
-            <node name="toolbar1" type="Toolbar">
+            <node name="__gtksharp_84_Stetic_Editor_ActionToolbar" type="Toolbar">
               <node type="Toolitem" action="newAction" />
               <node type="Toolitem" action="openAction" />
               <node type="Toolitem" action="saveAction" />
@@ -618,7 +618,7 @@ Output</property>
                   <widget class="Gtk.Label" id="label9">
                     <property name="MemberName" />
                     <property name="Xalign">1</property>
-                    <property name="LabelProp" translatable="yes">Epochs</property>
+                    <property name="LabelProp" translatable="yes">Max epochs</property>
                   </widget>
                   <packing>
                     <property name="TopAttach">2</property>
