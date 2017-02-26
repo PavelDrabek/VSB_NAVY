@@ -18,13 +18,15 @@ namespace ANN.Trainer
             this.data = data;
         }
 
-        public void Start ()
+        public int Start ()
         {
             for (int i = 0; i < Epochs; i++) {
                 if (!TrainCycle ()) {
-                    return;
+                    return i;
                 }
             }
+
+            return Epochs;
         }
 
         private bool TrainCycle ()

@@ -20,6 +20,10 @@ namespace Windows
             this.network = network;
             data = new List<TrainingData>();
 
+            entryEpochs.Text = "50";
+            entryTrainCoef.Text = "0,3";
+            entryLearnCoef.Text = "0,3";
+
             nodeview.AppendColumn ("Input", new Gtk.CellRendererText (), "text", 0);
             nodeview.AppendColumn ("Output", new Gtk.CellRendererText (), "text", 1);
             nodeview.ShowAll ();
@@ -110,10 +114,12 @@ namespace Windows
         protected void OnYesActionActivated (object sender, EventArgs e)
         {
             NeuronTrainer trainer = new NeuronTrainer (network, data.ToArray ());
-            trainer.Epochs = 50;
-            trainer.LearningCoef = 0.3;
-            trainer.TrainCoef = 0.5;
-            trainer.Start ();
+            trainer.Epochs = int.Parse(entryEpochs.Text);
+            trainer.LearningCoef = double.Parse(entryLearnCoef.Text);
+            trainer.TrainCoef = double.Parse (entryTrainCoef.Text);
+
+
+            labelEpochsCount.Text = trainer.Start ().ToString();
         }
     }
 }

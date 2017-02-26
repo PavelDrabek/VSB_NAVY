@@ -18,6 +18,30 @@ namespace Windows
 
 		private global::Gtk.Toolbar toolbar1;
 
+		private global::Gtk.HBox hbox1;
+
+		private global::Gtk.Table table3;
+
+		private global::Gtk.Entry entryEpochs;
+
+		private global::Gtk.Entry entryLearnCoef;
+
+		private global::Gtk.Entry entryTrainCoef;
+
+		private global::Gtk.HSeparator hseparator3;
+
+		private global::Gtk.HSeparator hseparator4;
+
+		private global::Gtk.Label label10;
+
+		private global::Gtk.Label label7;
+
+		private global::Gtk.Label label8;
+
+		private global::Gtk.Label label9;
+
+		private global::Gtk.Label labelEpochsCount;
+
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 
 		private global::Gtk.NodeView nodeview;
@@ -60,6 +84,131 @@ namespace Windows
 			w2.Expand = false;
 			w2.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
+			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1.Name = "hbox1";
+			this.hbox1.Spacing = 6;
+			this.hbox1.BorderWidth = ((uint)(3));
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.table3 = new global::Gtk.Table (((uint)(6)), ((uint)(2)), false);
+			this.table3.Name = "table3";
+			this.table3.RowSpacing = ((uint)(6));
+			this.table3.ColumnSpacing = ((uint)(6));
+			// Container child table3.Gtk.Table+TableChild
+			this.entryEpochs = new global::Gtk.Entry ();
+			this.entryEpochs.CanFocus = true;
+			this.entryEpochs.Name = "entryEpochs";
+			this.entryEpochs.IsEditable = true;
+			this.entryEpochs.InvisibleChar = '●';
+			this.table3.Add (this.entryEpochs);
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table3 [this.entryEpochs]));
+			w3.TopAttach = ((uint)(2));
+			w3.BottomAttach = ((uint)(3));
+			w3.LeftAttach = ((uint)(1));
+			w3.RightAttach = ((uint)(2));
+			w3.XOptions = ((global::Gtk.AttachOptions)(4));
+			w3.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table3.Gtk.Table+TableChild
+			this.entryLearnCoef = new global::Gtk.Entry ();
+			this.entryLearnCoef.CanFocus = true;
+			this.entryLearnCoef.Name = "entryLearnCoef";
+			this.entryLearnCoef.IsEditable = true;
+			this.entryLearnCoef.InvisibleChar = '●';
+			this.table3.Add (this.entryLearnCoef);
+			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table3 [this.entryLearnCoef]));
+			w4.LeftAttach = ((uint)(1));
+			w4.RightAttach = ((uint)(2));
+			w4.XOptions = ((global::Gtk.AttachOptions)(4));
+			w4.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table3.Gtk.Table+TableChild
+			this.entryTrainCoef = new global::Gtk.Entry ();
+			this.entryTrainCoef.CanFocus = true;
+			this.entryTrainCoef.Name = "entryTrainCoef";
+			this.entryTrainCoef.IsEditable = true;
+			this.entryTrainCoef.InvisibleChar = '●';
+			this.table3.Add (this.entryTrainCoef);
+			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table3 [this.entryTrainCoef]));
+			w5.TopAttach = ((uint)(1));
+			w5.BottomAttach = ((uint)(2));
+			w5.LeftAttach = ((uint)(1));
+			w5.RightAttach = ((uint)(2));
+			w5.XOptions = ((global::Gtk.AttachOptions)(4));
+			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table3.Gtk.Table+TableChild
+			this.hseparator3 = new global::Gtk.HSeparator ();
+			this.hseparator3.Name = "hseparator3";
+			this.table3.Add (this.hseparator3);
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table3 [this.hseparator3]));
+			w6.TopAttach = ((uint)(3));
+			w6.BottomAttach = ((uint)(4));
+			w6.XOptions = ((global::Gtk.AttachOptions)(4));
+			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table3.Gtk.Table+TableChild
+			this.hseparator4 = new global::Gtk.HSeparator ();
+			this.hseparator4.Name = "hseparator4";
+			this.table3.Add (this.hseparator4);
+			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table3 [this.hseparator4]));
+			w7.TopAttach = ((uint)(3));
+			w7.BottomAttach = ((uint)(4));
+			w7.LeftAttach = ((uint)(1));
+			w7.RightAttach = ((uint)(2));
+			w7.XOptions = ((global::Gtk.AttachOptions)(4));
+			w7.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table3.Gtk.Table+TableChild
+			this.label10 = new global::Gtk.Label ();
+			this.label10.Name = "label10";
+			this.label10.LabelProp = global::Mono.Unix.Catalog.GetString ("epochs to learn: ");
+			this.table3.Add (this.label10);
+			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table3 [this.label10]));
+			w8.TopAttach = ((uint)(5));
+			w8.BottomAttach = ((uint)(6));
+			w8.XOptions = ((global::Gtk.AttachOptions)(4));
+			w8.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table3.Gtk.Table+TableChild
+			this.label7 = new global::Gtk.Label ();
+			this.label7.Name = "label7";
+			this.label7.Xalign = 1F;
+			this.label7.LabelProp = global::Mono.Unix.Catalog.GetString ("Learning coef");
+			this.table3.Add (this.label7);
+			global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table3 [this.label7]));
+			w9.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table3.Gtk.Table+TableChild
+			this.label8 = new global::Gtk.Label ();
+			this.label8.Name = "label8";
+			this.label8.Xalign = 1F;
+			this.label8.LabelProp = global::Mono.Unix.Catalog.GetString ("Train coef");
+			this.table3.Add (this.label8);
+			global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table3 [this.label8]));
+			w10.TopAttach = ((uint)(1));
+			w10.BottomAttach = ((uint)(2));
+			w10.XOptions = ((global::Gtk.AttachOptions)(4));
+			w10.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table3.Gtk.Table+TableChild
+			this.label9 = new global::Gtk.Label ();
+			this.label9.Name = "label9";
+			this.label9.Xalign = 1F;
+			this.label9.LabelProp = global::Mono.Unix.Catalog.GetString ("Epochs");
+			this.table3.Add (this.label9);
+			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table3 [this.label9]));
+			w11.TopAttach = ((uint)(2));
+			w11.BottomAttach = ((uint)(3));
+			w11.XOptions = ((global::Gtk.AttachOptions)(4));
+			w11.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table3.Gtk.Table+TableChild
+			this.labelEpochsCount = new global::Gtk.Label ();
+			this.labelEpochsCount.Name = "labelEpochsCount";
+			this.table3.Add (this.labelEpochsCount);
+			global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.table3 [this.labelEpochsCount]));
+			w12.TopAttach = ((uint)(5));
+			w12.BottomAttach = ((uint)(6));
+			w12.LeftAttach = ((uint)(1));
+			w12.RightAttach = ((uint)(2));
+			w12.XOptions = ((global::Gtk.AttachOptions)(4));
+			w12.YOptions = ((global::Gtk.AttachOptions)(4));
+			this.hbox1.Add (this.table3);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.table3]));
+			w13.Position = 0;
+			w13.Expand = false;
+			// Container child hbox1.Gtk.Box+BoxChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
@@ -68,9 +217,12 @@ namespace Windows
 			this.nodeview.CanFocus = true;
 			this.nodeview.Name = "nodeview";
 			this.GtkScrolledWindow.Add (this.nodeview);
-			this.vbox3.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.GtkScrolledWindow]));
-			w4.Position = 1;
+			this.hbox1.Add (this.GtkScrolledWindow);
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.GtkScrolledWindow]));
+			w15.Position = 1;
+			this.vbox3.Add (this.hbox1);
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox1]));
+			w16.Position = 1;
 			this.Add (this.vbox3);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
