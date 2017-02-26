@@ -439,7 +439,7 @@ Output</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Windows.TrainerWindow" design-size="679 400">
+  <widget class="Gtk.Window" id="Windows.TrainerWindow" design-size="500 231">
     <action-group name="Default">
       <action id="newAction">
         <property name="Type">Action</property>

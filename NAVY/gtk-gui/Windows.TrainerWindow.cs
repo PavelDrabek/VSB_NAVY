@@ -227,8 +227,8 @@ namespace Windows
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 679;
-			this.DefaultHeight = 400;
+			this.DefaultWidth = 500;
+			this.DefaultHeight = 231;
 			this.Show ();
 			this.newAction.Activated += new global::System.EventHandler (this.OnNewActionActivated);
 			this.openAction.Activated += new global::System.EventHandler (this.OnOpenActionActivated);
