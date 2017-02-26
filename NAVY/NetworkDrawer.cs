@@ -23,9 +23,12 @@ namespace NAVY
         public int width, height;
         private Vector2 center; 
 
+        Dictionary<int, Vector2> neuronPoints = null;
+
         public NetworkDrawer (NeuronNetwork network, Gdk.Drawable drawable)
         {
             this.network = network;
+            neuronPoints = new Dictionary<int, Vector2> ();
             SetDrawable (drawable);
         }
 
@@ -39,19 +42,14 @@ namespace NAVY
             drawable.GetSize (out width, out height);
             center = new Vector2 (width / 2, height / 2);
 
-            //List<List<Vector2>> points = new List<List<Vector2>> ();
-            Dictionary<int, Vector2> neuronPoints = new Dictionary<int, Vector2> ();
+            neuronPoints.Clear();
             for (int l = 0; l < network.Layers.Count; l++) {
-                //List<Vector2> layerPoints = new List<Vector2> ();
                 NeuronsLayer layer = network.Layers [l];
                 for (int n = 0; n < layer.Neurons.Count; n++) {
                     Vector2 nPos = CalcNeuronPosition (l, network.Layers.Count, n, layer.Neurons.Count);
-                    //layerPoints.Add (nPos);
                     neuronPoints [layer.Neurons [n].ID] = nPos;
                 }
-                //points.Add (layerPoints);
             }
-
 
             using (Context g = Gdk.CairoHelper.Create (drawable)) {
                 g.SetSourceColor (new Color (1, 1, 1));
@@ -114,6 +112,21 @@ namespace NAVY
         private PointD ToPoint (Vector2 v)
         {
             return new PointD (v.X, v.Y);
+        }
+
+        public Neuron GetNeuronOnPostion (Vector2 position)
+        {
+            Neuron found = null;
+            double closestDistance = double.MaxValue;
+            foreach (var item in neuronPoints) {
+                double distance = Vector2.Distance (item.Value, position);
+                if (distance <= nR && distance < closestDistance) {
+                    closestDistance = distance;
+                    found = network.GetNeuron (item.Key);
+                }
+            }
+
+            return found;
         }
     }
 }

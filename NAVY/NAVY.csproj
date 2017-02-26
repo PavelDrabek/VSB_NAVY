@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="MainWindow.cs" />
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,9 +68,25 @@
     <Compile Include="NetworkDrawer.cs" />
     <Compile Include="ANN\NeuronsLayer.cs" />
     <Compile Include="Vector2.cs" />
+    <Compile Include="gtk-gui\NAVY.NeuronWindow.cs" />
+    <Compile Include="Windows\MainWindow.cs" />
+    <Compile Include="Windows\NeuronWindow.cs" />
+    <Compile Include="ANN\Trainer\NeuronTrainer.cs" />
+    <Compile Include="ANN\Trainer\TrainingData.cs" />
+    <Compile Include="Windows\TrainerWindow.cs" />
+    <Compile Include="gtk-gui\Windows.TrainerWindow.cs" />
+    <Compile Include="TrainingDataNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ANN\" />
+    <Folder Include="Windows\" />
+    <Folder Include="ANN\Trainer\" />
+    <Folder Include="TrainingData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TrainingData\logic_and.txt" />
+    <None Include="TrainingData\logic_or.txt" />
+    <None Include="TrainingData\logic_xor.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

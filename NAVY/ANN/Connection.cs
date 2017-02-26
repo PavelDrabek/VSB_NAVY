@@ -7,7 +7,7 @@ namespace ANN
     {
         public Neuron From { get; private set; }
         public Neuron To { get; private set; }
-        public double Weight { get; private set; }
+        public double Weight { get; set; }
 
         public Connection (Neuron from, Neuron to, double weight)
         {

@@ -1,0 +1,1 @@
+﻿<?xml version="1.0" encoding="utf-8"?><NeuronNetwork><Neuron id="1" /><Neuron id="2" /><Neuron id="3" /><Layer index="0"><Neuron id="1" /><Neuron id="2" /></Layer><Layer index="1"><Neuron id="3" /></Layer><Connection from="1" to="3" weight="0,7" /><Connection from="2" to="3" weight="0,7" /></NeuronNetwork>

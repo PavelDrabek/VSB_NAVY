@@ -11,7 +11,7 @@ namespace ANN
         public List<Connection> OutputConnections { get; set; }
 
         public int ID { get; private set; }
-        public int Value { get; private set; }
+        public double Value { get; private set; }
         public bool IsEvaluated { get; private set; }
 
         public Neuron (int id)
@@ -27,7 +27,6 @@ namespace ANN
             IsEvaluated = true;
         }
 
-
         public void Evaluate ()
         {
             double result = 0;
@@ -39,7 +38,7 @@ namespace ANN
             }
 
 
-            Value = (int)result;
+            Value = result;
             IsEvaluated = true;
         }
 

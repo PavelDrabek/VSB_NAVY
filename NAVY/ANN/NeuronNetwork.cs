@@ -35,13 +35,14 @@ namespace ANN
             SendOnNetworkChanged ();
         }
 
-        public void Evaluate ()
+        public int[] Evaluate ()
         {
             NeuronsLayer lastLayer = Layers [Layers.Count - 1];
             for (int i = 0; i < lastLayer.Neurons.Count; i++) {
                 lastLayer.Neurons [i].Evaluate ();
             }
             SendOnNetworkChanged ();
+            return GetOutput ();
         }
 
         public void Clean ()
@@ -58,13 +59,13 @@ namespace ANN
             int [] output = new int [lastLayer.Neurons.Count];
 
             for (int i = 0; i < lastLayer.Neurons.Count; i++) {
-                output[i] = lastLayer.Neurons [i].Value;
+                output[i] = (int)Math.Round(lastLayer.Neurons [i].Value);
             }
 
             return output;
         }
 
-        public void Generate (int inputs, int layers, int numInLayers)
+        public void Generate (int inputs, int innerLayers, int numInLayers)
         {
             Neurons = new List<Neuron> ();
             Connections = new List<Connection> ();
@@ -79,7 +80,7 @@ namespace ANN
             Layers.Add (new NeuronsLayer (neuronsInLayer));
             Neurons.AddRange (neuronsInLayer);
 
-            for (int i = 0; i < layers; i++) {
+            for (int i = 0; i < innerLayers; i++) {
                 neuronsInLayer = new List<Neuron> ();
                 for (int j = 0; j < numInLayers; j++) {
                     Neuron neuron = new Neuron (neuronId++);
@@ -202,7 +203,7 @@ namespace ANN
             }
         }
 
-        private Neuron GetNeuron (int id)
+        public Neuron GetNeuron (int id)
         {
             return Neurons.Find((obj) => obj.ID == id);
         }

@@ -1,18 +1,32 @@
 ﻿using System;
 using System.Xml;
+using ANN;
+using Gdk;
 using Gtk;
+using NAVY;
+using Windows;
+using XnaGeometry;
 
 public partial class MainWindow : Gtk.Window
 {
     private NAVY.NetworkDrawer networkDrawer;
-    private ANN.NeuronNetwork network;
+    private NeuronNetwork network;
+
+    private Neuron selectedNeuron;
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
-        network = new ANN.NeuronNetwork ();
+        network = new NeuronNetwork ();
         network.OnNeuralNetworkChanged += OnNeuronNetworkChanged;
         networkDrawer = new NAVY.NetworkDrawer (network, drawingarea.GdkWindow);
+
+        drawingarea.AddEvents ((int)
+            (EventMask.ButtonPressMask
+            | EventMask.ButtonReleaseMask
+            | EventMask.KeyPressMask
+            | EventMask.PointerMotionMask));
+
         RefreshDrawing ();
 	}
 
@@ -44,7 +58,7 @@ public partial class MainWindow : Gtk.Window
 
     protected void OnNewActionActivated (object sender, EventArgs e)
     {
-        network.Generate (2, 2, 3);
+        network.Generate (2, 0, 2);
     }
 
     protected void OnOpenActionActivated (object sender, EventArgs e)
@@ -85,11 +99,6 @@ public partial class MainWindow : Gtk.Window
         filechooser.Destroy ();
     }
 
-    protected void OnBtnEvaluateEntered (object sender, EventArgs e)
-    {
-
-    }
-
     protected void OnBtnEvaluateClicked (object sender, EventArgs e)
     {
         string [] str = entryInput.Text.Split (';');
@@ -104,5 +113,20 @@ public partial class MainWindow : Gtk.Window
         network.Evaluate ();
 
         entryOutput.Text = string.Join (";", network.GetOutput ());
+    }
+
+    protected void OnDrawingareaButtonPressEvent (object o, ButtonPressEventArgs args)
+    {
+        Vector2 point = new Vector2 (args.Event.X, args.Event.Y);
+        selectedNeuron = networkDrawer.GetNeuronOnPostion (point);
+
+        if (selectedNeuron != null) {
+            new NeuronWindow (selectedNeuron).Show ();
+        }
+    }
+
+    protected void OnTrainNetworkActivated (object sender, EventArgs e)
+    {
+        new TrainerWindow (network).Show ();
     }
 }
