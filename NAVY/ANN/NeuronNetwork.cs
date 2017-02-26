@@ -65,7 +65,7 @@ namespace ANN
             return output;
         }
 
-        public void Generate (int inputs, int innerLayers, int numInLayers)
+        public void Generate (int inputs, int innerLayers, int numInLayers, int outputs)
         {
             Neurons = new List<Neuron> ();
             Connections = new List<Connection> ();
@@ -91,7 +91,10 @@ namespace ANN
             }
 
             neuronsInLayer = new List<Neuron> ();
-            neuronsInLayer.Add (new Neuron (neuronId++));
+            for (int i = 0; i < outputs; i++) {
+                Neuron neuron = new Neuron (neuronId++);
+                neuronsInLayer.Add (neuron);
+            }
             Layers.Add (new NeuronsLayer (neuronsInLayer));
             Neurons.AddRange (neuronsInLayer);
 

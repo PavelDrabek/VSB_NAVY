@@ -58,7 +58,7 @@ public partial class MainWindow : Gtk.Window
 
     protected void OnNewActionActivated (object sender, EventArgs e)
     {
-        network.Generate (2, 0, 2);
+        new NewNetworkDialog (network).Show ();
     }
 
     protected void OnOpenActionActivated (object sender, EventArgs e)
