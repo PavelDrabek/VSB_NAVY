@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using ANN.Functions;
 
 namespace ANN
 {
@@ -13,12 +11,14 @@ namespace ANN
         public int ID { get; private set; }
         public double Value { get; private set; }
         public bool IsEvaluated { get; private set; }
+        public ITransferFunction Function { get; set; }
 
-        public Neuron (int id)
+        public Neuron (int id, ITransferFunction function)
         {
             ID = id;
             InputConnections = new List<Connection> ();
             OutputConnections = new List<Connection> ();
+            Function = function;
         }
 
         public void SetValue (int value)
@@ -37,8 +37,7 @@ namespace ANN
                 result += InputConnections [i].From.Value * InputConnections [i].Weight;
             }
 
-
-            Value = result;
+            Value = Function.Evaluate(result);
             IsEvaluated = true;
         }
 

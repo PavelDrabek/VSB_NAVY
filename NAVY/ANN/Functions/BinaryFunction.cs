@@ -1,10 +1,18 @@
 ﻿using System;
 namespace ANN.Functions
 {
-    public class BinaryFunction
+    public class BinaryFunction : ITransferFunction
     {
-        public BinaryFunction ()
+        public double K { get; private set; }
+        
+        public BinaryFunction (double k)
         {
+            K = k;
+        }
+
+        public double Evaluate (double x)
+        {
+            return x * K < 0 ? 0 : 1;
         }
     }
 }

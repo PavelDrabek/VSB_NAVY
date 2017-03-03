@@ -118,6 +118,7 @@ namespace NAVY
 			this.DefaultWidth = 336;
 			this.DefaultHeight = 144;
 			this.Show ();
+			this.comboboxFunction.Changed += new global::System.EventHandler (this.OnComboboxFunctionChanged);
 		}
 	}
 }

@@ -248,6 +248,7 @@
                 <property name="Items" translatable="yes">Perceptron
 Input
 Output</property>
+                <signal name="Changed" handler="OnComboboxFunctionChanged" />
               </widget>
               <packing>
                 <property name="TopAttach">2</property>

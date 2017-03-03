@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
+using ANN.Functions;
 
 namespace ANN
 {
@@ -74,7 +75,7 @@ namespace ANN
             int neuronId = 1;
             List<Neuron> neuronsInLayer = new List<Neuron> ();
             for (int i = 0; i < inputs; i++) {
-                Neuron neuron = new Neuron (neuronId++);
+                Neuron neuron = new Neuron (neuronId++, new PerceptronFunction());
                 neuronsInLayer.Add (neuron);
             }
             Layers.Add (new NeuronsLayer (neuronsInLayer));
@@ -83,7 +84,7 @@ namespace ANN
             for (int i = 0; i < innerLayers; i++) {
                 neuronsInLayer = new List<Neuron> ();
                 for (int j = 0; j < numInLayers; j++) {
-                    Neuron neuron = new Neuron (neuronId++);
+                    Neuron neuron = new Neuron (neuronId++, new PerceptronFunction ());
                     neuronsInLayer.Add (neuron);
                 }
                 Layers.Add (new NeuronsLayer (neuronsInLayer));
@@ -92,7 +93,7 @@ namespace ANN
 
             neuronsInLayer = new List<Neuron> ();
             for (int i = 0; i < outputs; i++) {
-                Neuron neuron = new Neuron (neuronId++);
+                Neuron neuron = new Neuron (neuronId++, new PerceptronFunction ());
                 neuronsInLayer.Add (neuron);
             }
             Layers.Add (new NeuronsLayer (neuronsInLayer));
@@ -127,7 +128,7 @@ namespace ANN
                 foreach (XmlNode node in data.ChildNodes) {
                     if (node.Name.Equals ("Neuron")) {
                         int id = int.Parse (node.Attributes ["id"].Value);
-                        Neuron n = new Neuron (id);
+                        Neuron n = new Neuron (id, new PerceptronFunction ());
                         Neurons.Add (n);
                     } else if (node.Name.Equals ("Layer")) {
                         List<Neuron> neuronsInLayer = new List<Neuron> ();

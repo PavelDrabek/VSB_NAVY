@@ -78,11 +78,17 @@
     <Compile Include="TrainingDataNode.cs" />
     <Compile Include="Windows\NewNetworkDialog.cs" />
     <Compile Include="gtk-gui\Windows.NewNetworkDialog.cs" />
+    <Compile Include="ANN\Functions\ITransferFunction.cs" />
+    <Compile Include="ANN\Functions\HyperbolicFunction.cs" />
+    <Compile Include="ANN\Functions\LogisticFunction.cs" />
+    <Compile Include="ANN\Functions\BinaryFunction.cs" />
+    <Compile Include="ANN\Functions\PerceptronFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ANN\" />
     <Folder Include="Windows\" />
     <Folder Include="ANN\Trainer\" />
+    <Folder Include="ANN\Functions\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
