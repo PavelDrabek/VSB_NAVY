@@ -1,0 +1,3 @@
+/Users/pavel/Documents/Projekty/NAVY/NAVY_Fractals/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/pavel/Documents/Projekty/NAVY/NAVY_Fractals/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/pavel/Documents/Projekty/NAVY/NAVY_Fractals/cmake-build-debug/CMakeFiles/NAVY_Fractals.dir
