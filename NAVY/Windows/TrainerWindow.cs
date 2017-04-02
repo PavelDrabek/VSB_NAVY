@@ -113,10 +113,10 @@ namespace Windows
 
         protected void OnYesActionActivated (object sender, EventArgs e)
         {
-            NeuronTrainer trainer = new NeuronTrainer (network, data.ToArray ());
+            NeuronTrainer trainer = new NeuronTrainerEA (network, data.ToArray ());
             trainer.Epochs = int.Parse(entryEpochs.Text);
-            trainer.LearningCoef = double.Parse(entryLearnCoef.Text);
-            trainer.TrainCoef = double.Parse (entryTrainCoef.Text);
+            trainer.LearningCoef = float.Parse(entryLearnCoef.Text);
+            trainer.TrainCoef = float.Parse (entryTrainCoef.Text);
 
 
             labelEpochsCount.Text = trainer.Start ().ToString();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 using ANN.Functions;
+using EA;
 
 namespace ANN
 {
@@ -20,6 +21,16 @@ namespace ANN
             Neurons = new List<Neuron>();
             Connections = new List<Connection> ();
             Layers = new List<NeuronsLayer> ();
+        }
+
+        public NeuronNetwork (NeuronNetwork orig)
+        {
+            NeuronsLayer inputLayer = orig.Layers [0];
+            NeuronsLayer outputLayer = orig.Layers [orig.Layers.Count - 1];
+            int innerLayers = orig.Layers.Count - 2;
+            NeuronsLayer innerLayer = (innerLayers > 0) ? orig.Layers [1] : null;
+            int numInLayers = (innerLayer != null) ? innerLayer.Neurons.Count : 0;
+            Generate (inputLayer.Neurons.Count, innerLayers, numInLayers, outputLayer.Neurons.Count);
         }
 
         public void SetInputs (int [] inputs)
@@ -143,7 +154,7 @@ namespace ANN
                     } else if (node.Name.Equals ("Connection")) {
                         int from = int.Parse (node.Attributes ["from"].Value);
                         int to = int.Parse (node.Attributes ["to"].Value);
-                        double weight = double.Parse (node.Attributes ["weight"].Value);
+                        float weight = float.Parse (node.Attributes ["weight"].Value);
                         Connection c = new Connection (GetNeuron(from), GetNeuron(to), weight);
                         Connections.Add (c);
                     }
@@ -217,6 +228,23 @@ namespace ANN
             if (OnNeuralNetworkChanged != null) {
                 OnNeuralNetworkChanged (this, EventArgs.Empty);
             }
+        }
+
+        public float [] GetWeights ()
+        {
+            float [] values = new float [Connections.Count];
+            for (int i = 0; i < values.Length; i++) {
+                values [i] = (float)Connections [i].Weight;
+            }
+            return values;
+        }
+
+        public void SetWeights (float [] values)
+        {
+            for (int i = 0; i < values.Length; i++) {
+                Connections [i].Weight = values [i];
+            }
+            SendOnNetworkChanged ();
         }
     }
 }
