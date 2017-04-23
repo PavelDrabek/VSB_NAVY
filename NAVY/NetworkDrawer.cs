@@ -52,7 +52,7 @@ namespace NAVY
             }
 
             using (Context g = Gdk.CairoHelper.Create (drawable)) {
-                g.SetSourceColor (new Color (1, 1, 1));
+                g.SetSourceRGB (1, 1, 1);
                 g.Paint ();
 
                 foreach (var connection in network.Connections) {
@@ -74,9 +74,9 @@ namespace NAVY
         private void DrawCircle (Context g, Vector2 pos, Color color)
         {
             g.Arc (pos.X, pos.Y, nR, 0, 2 * System.Math.PI);
-            g.SetSourceColor (color);
+            g.SetSourceRGB (color.R, color.G, color.B);
             g.FillPreserve ();
-            g.SetSourceColor (new Color(0,0,0));
+            g.SetSourceRGB(0,0,0);
             g.Stroke ();
         }
 
@@ -96,7 +96,7 @@ namespace NAVY
             g.LineTo (ToPoint(end));
             g.ClosePath ();
 
-            g.SetSourceColor (arrowColor);
+            g.SetSourceRGB(arrowColor.R, arrowColor.G, arrowColor.B);
             g.Stroke ();
         }
 
