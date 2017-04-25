@@ -1,0 +1,4 @@
+﻿  NAVY_Chaos.cpp
+c:\projekty\vsb_navy\navy_chaos\navy_chaos\navy_chaos.cpp(34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  NAVY_Chaos.vcxproj -> C:\Projekty\VSB_NAVY\NAVY_Chaos\x64\Debug\NAVY_Chaos.exe
+  NAVY_Chaos.vcxproj -> C:\Projekty\VSB_NAVY\NAVY_Chaos\x64\Debug\NAVY_Chaos.pdb (Partial PDB)
